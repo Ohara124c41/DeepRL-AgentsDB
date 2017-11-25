@@ -1,4 +1,13 @@
-# Deep Reinforcement Learning Agents
+# On-going modifications on this repo (by Dabana)
+
+This repo was forked from the DeepRL-Agents repo by [Arthur Juliani] (https://github.com/awjuliani/DeepRL-Agents). I am currently adapting some of the code to:
+1) Be able to save the models and experience buffers for furhter training
+2) Training an agent to play VizDoom and use several inpout buffers from the game
+3) Use prioritized replay
+
+Most of the work so far has been put into the DRQN-VizDoom Jupyther notebook (and the helper2.py file). This is a double dueling DQN agent for which a recurrent layer is added. I am working on improving this agent by implenting [prioritized replay](https://arxiv.org/abs/1511.05952). 
+
+# Deep Reinforcement Learning Agents (by Juliani)
 
 This repository contains a collection of reinforcement learning algorithms written in Tensorflow. The ipython notebook here were written to go
 along with a still-underway tutorial series I have been publishing on [Medium](https://medium.com/@awjuliani/simple-reinforcement-learning-with-tensorflow-part-0-q-learning-with-tables-and-neural-networks-d195264329d0#.4gyadb8a4).
