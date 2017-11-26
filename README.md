@@ -1,11 +1,17 @@
 # On-going modifications on this repo (by Dabana)
 
-This repo was forked from the DeepRL-Agents repo by [Arthur Juliani] (https://github.com/awjuliani/DeepRL-Agents). I am currently adapting some of the code to:
-1) Be able to save the models and experience buffers for furhter training
-2) Training an agent to play VizDoom and use several inpout buffers from the game
-3) Use prioritized replay
+This repo was forked from the DeepRL-Agents repo by [Arthur Juliani](https://github.com/awjuliani/DeepRL-Agents). I am currently adapting some of the code to train a neural agent to play [Vizdoom](http://vizdoom.cs.put.edu.pl/).
 
-Most of the work so far has been put into the DRQN-VizDoom Jupyther notebook (and the helper2.py file). This is a double dueling DQN agent for which a recurrent layer is added. I am working on improving this agent by implenting [prioritized replay](https://arxiv.org/abs/1511.05952). 
+Most of the work so far has been put into the DRQN-VizDoom Jupyther notebook (and the helper2.py file). This is a double dueling DQN agent for which a recurrent layer is added. I am working on improving this agent by implenting [prioritized replay](https://arxiv.org/abs/1511.05952).
+
+I am also working on:
+1) Being able to save the models and experience buffers for further training
+2) Training an agent to play VizDoom with other input buffers from the game such as labels and depth buffers
+
+Future improvements I will be working on soon are:
+1) Optimizing prioritized replay using heap queues for the experience replay buffer
+2) Implementing [Hindsight Experience Replay](https://arxiv.org/abs/1707.01495)
+3) Adapting the code [GA3C from NVLabs](https://github.com/NVlabs/GA3C) to train an A3C agent on GPU and CPU
 
 # Deep Reinforcement Learning Agents (by Juliani)
 
