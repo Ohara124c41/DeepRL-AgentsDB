@@ -118,7 +118,7 @@ def saveToCenter(i, rList, jList, bufferArray, summaryLength, h_size, sess, main
                      true_image=True, salience=False)
 
         wr = csv.writer(myfile, quoting=csv.QUOTE_ALL, lineterminator = '\n')
-        wr.writerow([i, np.mean(jList[-100:]), np.mean(rList[-summaryLength:]),
+        wr.writerow([i, np.mean(jList[-summaryLength:]), np.mean(rList[-summaryLength:]),
                      path + '/frames/image' + str(i) + '.gif',
                      path + '/frames/log' + str(i) + '.csv', 
                      path + '/frames/sal' + str(i) + '.gif'])
