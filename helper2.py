@@ -109,6 +109,13 @@ def saveToCenter(i, rList, jList, bufferArray, summaryLength, h_size, sess, main
             make_gif(s, path + '/frames/image' + str(i) + '.gif',
                      duration=len(images) * time_per_step,
                      true_image=True, salience=False)
+        else:
+            s = np.array([images[...,0]])
+            s = np.rollaxis(s, 0, 4)
+            
+            make_gif(s, path + '/frames/image' + str(i) + '.gif',
+                     duration=len(images) * time_per_step,
+                     true_image=True, salience=False)
 
         wr = csv.writer(myfile, quoting=csv.QUOTE_ALL, lineterminator = '\n')
         wr.writerow([i, np.mean(jList[-100:]), np.mean(rList[-summaryLength:]),
@@ -123,7 +130,10 @@ def saveToCenter(i, rList, jList, bufferArray, summaryLength, h_size, sess, main
         wr = csv.writer(myfile, quoting=csv.QUOTE_ALL, lineterminator = '\n')
         
         #Hard-coded number of actions. Need to work on that!
-        wr.writerow(["ACTION", "REWARD", "A0", "A1", 'A2', 'V'])
+        #wr.writerow(["ACTION", "REWARD", "A0", "A1", 'A2', 'V'])
+        '''
+        a_size = 3
+        wr.writerow(["ACTION", "REWARD"] +  ["A" + str(act_idx) for act_idx in range(0, a_size)] + ['V'])
         
         test_im = list(zip(bufferArray[:, 0]))
         test_im = np.vstack(test_im)
@@ -133,13 +143,19 @@ def saveToCenter(i, rList, jList, bufferArray, summaryLength, h_size, sess, main
             test_s = test_im[:,0:-img_x*img_x]
         else:
             test_s = test_im
-            
+          
         a, v = sess.run([mainQN.Advantage, mainQN.Value],
                         feed_dict={mainQN.scalarInput: np.vstack(test_s) / 255.0,
                                    mainQN.trainLength: len(bufferArray), 
                                    mainQN.state_in: state_train,
                                    mainQN.batch_size: 1})
-        wr.writerows(list(zip(bufferArray[:, 1], bufferArray[:, 2], a[:, 0], a[:, 1], a[:, 2], v[:, 0]))) #Hard-code number of actions Need to work on that
+        '''
+        #Hard-code number of actions Need to work on that
+        #a_comprehension = [a[:, act_idx] for act_idx in range(0,a_size)]
+        #a_list = [bufferArray[:, 1] + bufferArray[:, 2]] + a_comprehension + [v[:, 0]]
+        #to_write = list(zip(a_list))
+        #wr.writerows(to_write)
+        #wr.writerows(list(zip(bufferArray[:, 1], bufferArray[:, 2], a[:,0], a[:,1], a[:,2], v[:, 0])))
 
 
 # This code allows gifs to be saved of the training episode for use in the Control Center.
